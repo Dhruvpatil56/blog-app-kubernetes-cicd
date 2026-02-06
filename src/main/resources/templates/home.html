@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Home</title>
+    <title>Home - Blogging App</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
@@ -10,7 +10,7 @@
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
         body {
-            background: linear-gradient(135deg, #6e45e2, #88d3ce);
+            background: linear-gradient(135deg, #1e3c72, #2a5298, #7db9e8);
             font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
@@ -22,9 +22,9 @@
         }
 
         .navbar {
-            background-color: rgba(34, 34, 34, 0.8);
+            background-color: rgba(20, 30, 48, 0.95);
             padding: 10px 20px;
-            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
             position: fixed;
             top: 0;
             width: 100%;
@@ -32,12 +32,17 @@
         }
 
         .navbar .nav-link, .navbar .navbar-brand {
-            color: #88d3ce !important;
+            color: #7db9e8 !important;
             font-weight: bold;
         }
 
         .navbar .nav-link:hover {
             color: #ffffff !important;
+        }
+
+        .navbar .navbar-brand {
+            font-size: 24px;
+            letter-spacing: 1px;
         }
 
         .container {
@@ -48,7 +53,7 @@
         }
 
         h1 {
-            color: #88d3ce;
+            color: #7db9e8;
             text-align: center;
             margin-bottom: 40px;
             font-size: 36px;
@@ -59,10 +64,10 @@
         h1:after {
             content: '';
             display: block;
-            width: 60px;
+            width: 80px;
             height: 4px;
-            background-color: #6e45e2;
-            margin: 10px auto 0;
+            background: linear-gradient(90deg, #2a5298, #7db9e8);
+            margin: 15px auto 0;
             border-radius: 2px;
         }
 
@@ -70,13 +75,14 @@
             text-align: center;
             margin-bottom: 40px;
             animation: fadeInUp 1s ease-in-out;
+            color: rgba(255, 255, 255, 0.9);
         }
 
         .card {
-            background-color: rgba(0, 0, 0, 0.7);
-            border: none;
-            border-radius: 10px;
-            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+            background-color: rgba(20, 30, 48, 0.85);
+            border: 1px solid rgba(125, 185, 232, 0.2);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
             margin-bottom: 20px;
             transition: transform 0.3s, box-shadow 0.3s;
             animation: fadeIn 1s ease-in-out;
@@ -84,72 +90,123 @@
 
         .card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 0 45px rgba(0, 0, 0, 0.7);
+            box-shadow: 0 8px 30px rgba(125, 185, 232, 0.3);
+            border-color: rgba(125, 185, 232, 0.4);
+        }
+
+        .card-body {
+            padding: 20px;
         }
 
         .card-text {
             color: #ffffff;
+            font-size: 15px;
+            line-height: 1.6;
         }
 
         .post-author {
             font-style: italic;
-            color: #bbbbbb;
+            color: #7db9e8;
+            margin-top: 10px;
+            font-size: 14px;
         }
 
-        .trending-section {
+        .news-section {
             margin-top: 60px;
-            padding: 40px 20px;
-            background-color: rgba(34, 34, 34, 0.9);
-            border-radius: 10px;
-            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
+            padding: 40px 30px;
+            background-color: rgba(20, 30, 48, 0.9);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
             animation: fadeInUp 1s ease-in-out;
+            border: 1px solid rgba(125, 185, 232, 0.2);
         }
 
-        .trending-section h2 {
-            color: #6e45e2;
+        .news-section h2 {
+            color: #7db9e8;
             margin-bottom: 30px;
             text-align: center;
             font-size: 28px;
         }
 
-        .trending-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
+        .news-item {
+            padding: 20px;
+            margin-bottom: 15px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            border-left: 4px solid #7db9e8;
+            transition: all 0.3s;
         }
 
-        .trending-item:last-child {
+        .news-item:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: translateX(5px);
+        }
+
+        .news-item:last-child {
             margin-bottom: 0;
         }
 
-        .trending-item-icon {
-            font-size: 30px;
-            color: #88d3ce;
-            margin-right: 15px;
-        }
-
-        .trending-item-title {
+        .news-title {
             font-weight: bold;
             color: #ffffff;
+            font-size: 16px;
+            margin-bottom: 8px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .news-title:hover {
+            color: #7db9e8;
+        }
+
+        .news-meta {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 13px;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .news-tag {
+            display: inline-block;
+            background-color: rgba(125, 185, 232, 0.2);
+            color: #7db9e8;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            margin-right: 5px;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 16px;
+        }
+
+        .loading-spinner {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(125, 185, 232, 0.3);
+            border-top-color: #7db9e8;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 10px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
 
         .footer {
-            background-color: rgba(34, 34, 34, 0.8);
-            padding: 10px;
+            background-color: rgba(20, 30, 48, 0.95);
+            padding: 15px;
             text-align: center;
             color: #bbbbbb;
             margin-top: auto;
             animation: fadeInUp 1s ease-in-out;
             width: 100%;
-        }
-
-        .footer a {
-            color: #88d3ce;
-            text-decoration: none;
-        }
-
-        .footer a:hover {
-            color: #ffffff;
         }
 
         @keyframes fadeInDown {
@@ -188,7 +245,7 @@
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" th:href="@{/}">Twitter</a>
+        <a class="navbar-brand" th:href="@{/}">Blogging App</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -212,7 +269,7 @@
     <h1>Daily Posts</h1>
 
     <div class="welcome-message">
-        <p>Welcome to your daily dose of the latest posts. Explore what's trending, share your thoughts, and stay connected with the community.</p>
+        <p>Welcome to your blogging community. Share your thoughts and explore what others are saying.</p>
     </div>
 
     <div class="row">
@@ -226,29 +283,68 @@
         </div>
     </div>
 
-    <div class="trending-section">
-        <h2>Trending Topics</h2>
-        <div class="trending-item">
-            <div class="trending-item-icon">🔥</div>
-            <div class="trending-item-title">#BreakingNews</div>
-        </div>
-        <div class="trending-item">
-            <div class="trending-item-icon">💡</div>
-            <div class="trending-item-title">#TechInnovations</div>
-        </div>
-        <div class="trending-item">
-            <div class="trending-item-icon">🎉</div>
-            <div class="trending-item-title">#FunFriday</div>
+    <div class="news-section">
+        <h2>🔥 Latest DevOps & Cloud News</h2>
+        <div id="news-container">
+            <div class="loading">
+                <div class="loading-spinner"></div>
+                <p>Loading latest news...</p>
+            </div>
         </div>
     </div>
 </div>
 
 <div class="footer">
-    <p>&copy; 2024 DevOps Shack. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+    <p>&copy; 2024 Blogging App. All rights reserved.</p>
 </div>
 
-<!-- Bootstrap JS (Optional) -->
+<!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- News Fetching Script -->
+<script>
+    // Fetch latest DevOps articles from Dev.to
+    async function fetchDevOpsNews() {
+        const newsContainer = document.getElementById('news-container');
+        
+        try {
+            // Fetch articles tagged with devops, kubernetes, docker, cloud
+            const response = await fetch('https://dev.to/api/articles?tag=devops&per_page=5');
+            const articles = await response.json();
+            
+            if (articles && articles.length > 0) {
+                newsContainer.innerHTML = articles.map(article => `
+                    <div class="news-item">
+                        <a href="${article.url}" target="_blank" class="news-title">
+                            ${article.title}
+                        </a>
+                        <div class="news-meta">
+                            <span>👤 ${article.user.name}</span>
+                            <span>📖 ${article.reading_time_minutes} min read</span>
+                            <span>❤️ ${article.public_reactions_count} reactions</span>
+                        </div>
+                        <div style="margin-top: 10px;">
+                            ${article.tag_list.slice(0, 3).map(tag => `<span class="news-tag">#${tag}</span>`).join('')}
+                        </div>
+                    </div>
+                `).join('');
+            } else {
+                newsContainer.innerHTML = '<p class="loading">No articles found at the moment.</p>';
+            }
+        } catch (error) {
+            console.error('Error fetching news:', error);
+            newsContainer.innerHTML = `
+                <div class="news-item">
+                    <div class="news-title" style="color: rgba(255, 255, 255, 0.7);">
+                        Unable to load news at the moment. Please check your internet connection.
+                    </div>
+                </div>
+            `;
+        }
+    }
+    
+    // Load news when page loads
+    window.addEventListener('DOMContentLoaded', fetchDevOpsNews);
+</script>
 </body>
 </html>
-

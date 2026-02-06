@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Registration</title>
+    <title>Register - Blogging App</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
@@ -16,7 +16,7 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            background: linear-gradient(135deg, #6e45e2, #88d3ce);
+            background: linear-gradient(135deg, #1e3c72, #2a5298, #7db9e8);
             color: #ffffff;
             overflow-x: hidden;
         }
@@ -25,52 +25,35 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background-color: rgba(34, 34, 34, 0.8);
-            padding: 10px 20px;
+            background-color: rgba(20, 30, 48, 0.95);
+            padding: 15px 20px;
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
             z-index: 1000;
-            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
         }
 
         .navbar h1 {
-            color: #ffffff;
-            font-size: 24px;
+            color: #7db9e8;
+            font-size: 26px;
             margin: 0;
-            margin-right: auto;
-        }
-
-        .navbar .links {
-            display: flex;
-            gap: 20px;
-        }
-
-        .navbar a {
-            color: #88d3ce;
-            text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s;
-        }
-
-        .navbar a:hover {
-            color: #ffffff;
+            letter-spacing: 1px;
         }
 
         .form-container {
-            background-color: rgba(0, 0, 0, 0.7);
+            background-color: rgba(20, 30, 48, 0.9);
             width: 400px;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
             animation: fadeIn 1s ease-in-out;
-            transform: translateY(0);
-            margin-top: 80px;
+            margin-top: 100px;
             margin-bottom: auto;
         }
 
         h2 {
-            color: #88d3ce;
+            color: #7db9e8;
             text-align: center;
             margin-bottom: 30px;
             font-size: 28px;
@@ -82,7 +65,7 @@
             display: block;
             width: 60px;
             height: 4px;
-            background-color: #6e45e2;
+            background: linear-gradient(90deg, #2a5298, #7db9e8);
             margin: 10px auto 0;
             border-radius: 2px;
         }
@@ -99,36 +82,42 @@
             padding: 12px;
             margin-bottom: 20px;
             border: none;
-            border-radius: 5px;
-            background-color: #444;
+            border-radius: 8px;
+            background-color: rgba(255, 255, 255, 0.1);
             color: #ffffff;
             box-sizing: border-box;
             font-size: 14px;
             transition: background-color 0.3s, transform 0.2s;
+            border: 1px solid rgba(125, 185, 232, 0.3);
         }
 
         input:focus {
-            background-color: #555;
+            background-color: rgba(255, 255, 255, 0.15);
             outline: none;
+            border-color: #7db9e8;
             transform: translateY(-2px);
         }
 
+        input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
         button {
-            background-color: #6e45e2;
+            background: linear-gradient(135deg, #2a5298, #7db9e8);
             color: #ffffff;
             padding: 12px 20px;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
             cursor: pointer;
             font-weight: bold;
             width: 100%;
             font-size: 16px;
-            transition: background-color 0.3s, transform 0.2s;
+            transition: transform 0.2s, box-shadow 0.3s;
         }
 
         button:hover {
-            background-color: #88d3ce;
             transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(125, 185, 232, 0.4);
         }
 
         .form-footer {
@@ -138,7 +127,7 @@
         }
 
         .form-footer a {
-            color: #88d3ce;
+            color: #7db9e8;
             text-decoration: none;
             font-weight: bold;
             transition: color 0.3s;
@@ -150,40 +139,34 @@
         }
 
         .success-message {
-            background-color: rgba(0, 128, 0, 0.7);
+            background-color: rgba(40, 167, 69, 0.8);
             color: #ffffff;
-            padding: 10px;
-            border-radius: 3px;
+            padding: 12px;
+            border-radius: 8px;
             text-align: center;
             margin-bottom: 20px;
             animation: fadeIn 0.5s ease-in-out;
         }
 
         .error-message {
-            color: #ff4c4c;
+            color: #ff6b6b;
             text-align: center;
             margin-top: 10px;
             font-weight: bold;
             animation: shake 0.5s;
+            background-color: rgba(220, 53, 69, 0.2);
+            padding: 10px;
+            border-radius: 8px;
         }
 
         .footer {
-            background-color: rgba(34, 34, 34, 0.8);
-            padding: 10px;
+            background-color: rgba(20, 30, 48, 0.95);
+            padding: 15px;
             text-align: center;
             color: #bbbbbb;
             margin-top: auto;
             animation: fadeInUp 1s ease-in-out;
             width: 100%;
-        }
-
-        .footer a {
-            color: #88d3ce;
-            text-decoration: none;
-        }
-
-        .footer a:hover {
-            color: #ffffff;
         }
 
         @keyframes fadeIn {
@@ -225,12 +208,7 @@
 
 <body>
     <div class="navbar">
-        <h1>DevOps Shack</h1>
-        <div class="links">
-            <a href="https://www.youtube.com/@devopsshack/videos" target="_blank">YouTube</a>
-            <a href="https://www.instagram.com/devopsshack/" target="_blank">Instagram</a>
-            <a href="https://www.devopsshack.com/" target="_blank">Courses</a>
-        </div>
+        <h1>Blogging App</h1>
     </div>
 
     <div class="form-container">
@@ -254,7 +232,7 @@
         </form>
 
         <div th:if="${Userexist}">
-            <div class="error-message">Username is Taken</div>
+            <div class="error-message">Username is already taken</div>
         </div>
 
         <div class="form-footer">
@@ -263,9 +241,8 @@
     </div>
 
     <div class="footer">
-        <p>&copy; 2024 DevOps Shack. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+        <p>&copy; 2024 Blogging App. All rights reserved.</p>
     </div>
 </body>
 
 </html>
-
