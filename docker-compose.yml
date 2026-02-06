@@ -1,0 +1,7 @@
+services:
+  blog-app:
+    image: dhruvpatil56/blog-app:latest
+    container_name: blog-app
+    ports:
+      - "8080:8080"
+    restart: always
