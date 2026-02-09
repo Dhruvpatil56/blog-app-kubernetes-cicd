@@ -16,7 +16,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 public class SecurityConfig {
 
     @Autowired
-    CustomUserDetailsService customUserDetailsService;
+    private CustomUserDetailsService customUserDetailsService;
 
     @Bean
     public static PasswordEncoder passwordEncoder() {
@@ -25,38 +25,55 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+
         http
-                .csrf(csrf -> csrf.disable())
-                .authorizeHttpRequests(authz -> authz
-                        .requestMatchers("/register").permitAll()
-                        .requestMatchers("/home").permitAll()
-                        .requestMatchers("/h2-console/**").permitAll()
-                        .requestMatchers("/images/**").permitAll()
-                        .anyRequest().authenticated()
-                )
-                .formLogin(form -> form
-                        .loginPage("/login")
-                        .loginProcessingUrl("/login")
-                        .defaultSuccessUrl("/", true)
-                        .permitAll()
-                )
-                .logout(logout -> logout
-                        .invalidateHttpSession(true)
-                        .clearAuthentication(true)
-                        .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                        .logoutSuccessUrl("/login?logout")
-                        .permitAll()
-                )
-                .headers(headers -> headers
-                        .frameOptions(frameOptions -> frameOptions.sameOrigin())
-                );
+            .csrf(csrf -> csrf.disable())
+
+            .authorizeHttpRequests(authz -> authz
+                // ✅ Prometheus & actuator endpoints (NO auth)
+                .requestMatchers(
+                        "/actuator/prometheus",
+                        "/actuator/health",
+                        "/actuator/info"
+                ).permitAll()
+
+                // Public endpoints
+                .requestMatchers("/register").permitAll()
+                .requestMatchers("/home").permitAll()
+                .requestMatchers("/h2-console/**").permitAll()
+                .requestMatchers("/images/**").permitAll()
+
+                // Everything else secured
+                .anyRequest().authenticated()
+            )
+
+            .formLogin(form -> form
+                .loginPage("/login")
+                .loginProcessingUrl("/login")
+                .defaultSuccessUrl("/", true)
+                .permitAll()
+            )
+
+            .logout(logout -> logout
+                .invalidateHttpSession(true)
+                .clearAuthentication(true)
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessUrl("/login?logout")
+                .permitAll()
+            )
+
+            .headers(headers -> headers
+                .frameOptions(frameOptions -> frameOptions.sameOrigin())
+            );
 
         return http.build();
     }
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(customUserDetailsService).passwordEncoder(passwordEncoder());
-
+        auth
+            .userDetailsService(customUserDetailsService)
+            .passwordEncoder(passwordEncoder());
     }
 }
+

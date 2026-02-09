@@ -19,5 +19,5 @@ spec:
           image: dhruvpatil56/blog-app:PLACEHOLDER
           imagePullPolicy: Always
           ports:
-            - containerPort: 8080
+            - containerPort: 8082
 
